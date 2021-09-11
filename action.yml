@@ -21,10 +21,6 @@ runs:
       working-directory: ${{ inputs.path }}
       shell: 'bash'
 
-    - run: ls -alR
-      working-directory: ${{ inputs.path }}
-      shell: 'bash'
-
     - run: rm artifact.tar
       working-directory: ${{ inputs.path }}
       shell: 'bash'
