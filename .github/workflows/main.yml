@@ -1,0 +1,52 @@
+name: Test download-tartifact
+
+on:
+  - push
+
+jobs:
+  test-upload-tartifact:
+    runs-on: ubuntu-latest
+    name: Test upload-tartifact GHA
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+
+      - name: Initial Tartifact
+        uses: alehechka/upload-tartifact@main
+        with:
+          name: test
+          path: README.md
+
+      - name: Second Tartifact (test cleanup of prior)
+        uses: alehechka/upload-tartifact@main
+        with:
+          name: test2
+          path: .github/workflows/main.yml
+
+  test-download-tartifact:
+    runs-on: ubuntu-latest
+    name: Test download-tartifact GHA
+    needs: test-upload-tartifact
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+
+      - name: Download Test Artifact
+        uses: alehechka/download-tartifact@main
+        with:
+          name: test
+          path: test
+
+      - name: List Test directory
+        run: ls -alR
+        working-directory: test
+
+      - name: Download Test2 Artifact
+        uses: alehechka/download-tartifact@main
+        with:
+          name: test2
+          path: test2
+
+      - name: List Test2 directory
+        run: ls -alR
+        working-directory: test2
