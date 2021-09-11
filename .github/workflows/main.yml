@@ -37,16 +37,11 @@ jobs:
           name: test
           path: test
 
-      - name: List Test directory
-        run: ls -alR
-        working-directory: test
-
       - name: Download Test2 Artifact
         uses: alehechka/download-tartifact@main
         with:
           name: test2
           path: test2
 
-      - name: List Test2 directory
+      - name: List directory
         run: ls -alR
-        working-directory: test2
