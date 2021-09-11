@@ -17,12 +17,14 @@ runs:
         name: ${{ inputs.name }}
         path: ${{ inputs.path }}
 
-    - run: tar -xvf ${{ inputs.path }}/artifact.tar
+    - run: tar -xvf artifact.tar
+      working-directory: ${{ inputs.path }}
       shell: 'bash'
 
     - run: ls -alR
       working-directory: ${{ inputs.path }}
       shell: 'bash'
 
-    - run: rm ${{ inputs.path }}/artifact.tar
+    - run: rm artifact.tar
+      working-directory: ${{ inputs.path }}
       shell: 'bash'
