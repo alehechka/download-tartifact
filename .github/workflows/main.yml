@@ -9,7 +9,7 @@ jobs:
     name: Test upload-tartifact GHA
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Initial Tartifact
         uses: alehechka/upload-tartifact@main
@@ -29,10 +29,10 @@ jobs:
     needs: test-upload-tartifact
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Download Test Artifact
-        uses: alehechka/download-tartifact@main
+        uses: ./
         with:
           name: test
           path: test
@@ -42,7 +42,7 @@ jobs:
         working-directory: test
 
       - name: Download Test2 Artifact
-        uses: alehechka/download-tartifact@main
+        uses: ./
         with:
           name: test2
           path: test2
